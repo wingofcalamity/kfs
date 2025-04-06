@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "kfs.h"
+#include <kfs.h>
 
 int main(int argc, char** argv)
 {

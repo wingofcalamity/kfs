@@ -1,10 +1,6 @@
-#include <kfs.h>
+#include <kfs3.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#define ESCAPE 0x1B
-#define UNIT_SEPARATOR 0x1F
-#define RECORD_SEPARATOR 0x1E
 
 int readFilename(FILE *fp, int *rc, struct kFile *kfs, int *kfsi, int *i)
 {
@@ -69,7 +65,68 @@ int readFiledata(FILE *fp, int *rc, struct kFile *kfs, int *kfsi, int *i)
   return 1;
 }
 
-struct kFile* readfile(char* fn)
+int readSignature(FILE *fp)
+{
+
+}
+
+int readNthByte(long byte, FILE *fp)
+{
+
+}
+
+int getFilesize(FILE *fp)
+{
+  int fsz;
+  fseek(fp, 0, SEEK_END);
+  fsz = ftell(fp);
+  fseek(fp, 0, SEEK_SET);
+  return fsz;
+}
+
+void readArchive(char* fn, kArchive_t *kfa)
+{
+  FILE *fp;
+  int fsz;
+
+  /* INIT STRUCT */
+  kfa->fileA = 0;
+  kfa->fn = fn;
+
+  printf("reading %s\n", kfa->fn);
+  fp = fopen(kfa->fn, "rb");
+  if (fp == NULL) {
+    perror("Error opening file");
+    return NULL;
+  }
+  fsz = getFilesize(fp);
+
+  printf("%d", fsz);
+  fclose(fp);
+}
+
+kFile_t* readFiles(kArchive_t *kfa)
+{
+  FILE *fp;
+  int rc, i, kfsi;
+
+  kfa->kfile = malloc(kfa->fileA * sizeof(kFile_t));
+
+  fp = fopen(kfa->fn, "rb");
+  if (fp == NULL) {
+    perror("Error opening file");
+    return NULL;
+  }
+
+  while(rc != EOF)
+  {
+
+  }
+
+  fclose(fp);
+}
+
+kFile_t* readfile(char* fn)
 {
   FILE *fp;
   static struct kFile kfs[100];

@@ -7,11 +7,6 @@ struct kFile {
   char fn[32];
 };
 
-struct kArchive {
-  int fileA;
-  struct kFile* kfile;
-};
-
 struct kFile* readfile(char*);
 void unpack(struct kFile *kfile);
 void pack(char* kfile, char* fn);
