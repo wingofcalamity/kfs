@@ -1,4 +1,13 @@
-*.x
-*.kfs
-*.obj
+# Application Specific
 /test
+*.kfs
+
+# Build
+/build
+*.o
+*.obj
+*.x
+*.exe
+
+# CMake
+

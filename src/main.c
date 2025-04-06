@@ -5,9 +5,12 @@
 int main(int argc, char** argv)
 {
   int i;
+#ifdef _DEBUG
+  printf("DEBUG ENABLED\n");
+#endif
   if(argc < 3)
   {
-    printf("Usage: kfs.x <archive.kfs>\nOptions:\n -u Unpack\n -p <files> Pack\n");
+    printf("Usage: %s <archive.kfs>\nOptions:\n -u Unpack\n -p <files> Pack\n", argv[0]);
     return 0;
   }
   
